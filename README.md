@@ -1,2 +1,2 @@
 # Pomidoro
-A simple pomodoro productivity app I build for myself
+A simple pomodoro productivity app I built for myself.
