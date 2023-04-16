@@ -68,3 +68,7 @@ body {
   color: var(--bg-color);
   background-color: var(--red-color);
 }
+
+.hidden {
+  display: none;
+}
