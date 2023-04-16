@@ -44,7 +44,13 @@ body {
   margin-top: 1rem;
 }
 
-.start-button {
+.btn-container {
+  margin-top: 4rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.btn {
   display: inline-block;
   color: var(--red-color);
   font-family: var(--font-family);
@@ -53,13 +59,12 @@ body {
   border: 3px solid var(--red-color);
   border-radius: 20px;
   background: none;
-  margin-top: 1rem;
   width: 15rem;
   height: 5rem;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.start-button:hover {
+.btn:hover {
   color: var(--bg-color);
   background-color: var(--red-color);
 }
