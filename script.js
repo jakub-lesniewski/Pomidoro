@@ -1,3 +1,5 @@
+"use strict";
+
 window.onload = function () {
   const startBtn = document.querySelector(".start");
   const pauseBtn = document.querySelector(".pause");
@@ -11,22 +13,20 @@ window.onload = function () {
   let secondsLabel = document.querySelector(".seconds");
   let minutesLabel = document.querySelector(".minutes");
 
-  function updateDisplay() {
-    secondsLabel.textContent = seconds < 10 ? `0${seconds}` : seconds;
-    minutesLabel.textContent = minutes < 10 ? `0${minutes}` : minutes;
-  }
+  let isPaused = false;
 
   function displayButtons() {
     pauseBtn.classList.remove("hidden");
     resetBtn.classList.remove("hidden");
     startBtn.classList.add("hidden");
-
-    setTimeout(() => {
-      pauseBtn.classList.add("visible");
-    }, 0);
   }
 
-  startBtn.addEventListener("click", () => {
+  function updateDisplay() {
+    secondsLabel.textContent = seconds < 10 ? `0${seconds}` : seconds;
+    minutesLabel.textContent = minutes < 10 ? `0${minutes}` : minutes;
+  }
+
+  function startWatch() {
     displayButtons();
     clearInterval(interval);
     interval = setInterval(() => {
@@ -37,11 +37,22 @@ window.onload = function () {
       }
       updateDisplay();
     }, 1000);
-  });
+  }
 
-  pauseBtn.addEventListener("click", () => {
-    clearInterval(interval);
-  });
+  function toggleWatch() {
+    if (!isPaused) {
+      clearInterval(interval);
+      isPaused = true;
+    } else {
+      startWatch();
+      pauseBtn.textContent = "Pause";
+      isPaused = false;
+    }
+  }
+
+  startBtn.addEventListener("click", startWatch);
+
+  pauseBtn.addEventListener("click", toggleWatch);
 
   resetBtn.addEventListener("click", () => {
     location.reload();
