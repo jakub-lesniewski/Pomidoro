@@ -6,10 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetBtn = document.querySelector(".reset");
   const closeBtn = document.querySelector(".close");
   const settingsBtn = document.querySelector(".settings");
+
   const pomodoros = document.querySelectorAll(".pomodoro-container .pomodoro");
+
   const secondsLabel = document.querySelector(".seconds");
   const minutesLabel = document.querySelector(".minutes");
+
   const settingsContainer = document.querySelector(".container-left");
+  const workDurationInput = document.querySelector(".work-duration");
+  const shortBreakDurationInput = document.querySelector(
+    ".short-break-duration"
+  );
+  const longBreakDurationInput = document.querySelector(".long-break-duration");
+  const settingsForm = document.querySelector(".settings-form");
 
   const audio = new Audio("ding.mp3");
 
@@ -114,13 +123,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Settings
+
+  const closeSettings = () => {
+    settingsContainer.classList.toggle("hidden");
+    settingsBtn.classList.toggle("hidden");
+  };
   settingsBtn.addEventListener("click", () => {
     settingsContainer.classList.toggle("hidden");
     settingsBtn.classList.toggle("hidden");
   });
 
-  closeBtn.addEventListener("click", () => {
-    settingsContainer.classList.toggle("hidden");
-    settingsBtn.classList.toggle("hidden");
+  closeBtn.addEventListener("click", closeSettings);
+
+  settingsForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    workTime = parseInt(workDurationInput.value);
+    shortBreakTime = parseInt(shortBreakDurationInput.value);
+    longBreakTime = parseInt(longBreakDurationInput.value);
   });
 });

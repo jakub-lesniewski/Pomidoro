@@ -57,7 +57,7 @@ body {
   color: var(--red-color);
   font-size: 2rem;
   border: 3px solid var(--red-color);
-  border-radius: 20px;
+  border-radius: 1rem;
   background: none;
   width: 15rem;
   height: 5rem;
@@ -109,4 +109,17 @@ body {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
+}
+
+.submit {
+  align-self: center;
+  font-size: 1rem;
+  width: 4rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.submit:active {
+  transform: translateY(0.2rem);
 }
