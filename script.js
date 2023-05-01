@@ -127,15 +127,53 @@ document.addEventListener("DOMContentLoaded", () => {
     settingsContainer.classList.toggle("hidden");
     settingsBtn.classList.toggle("hidden");
   };
+
   settingsBtn.addEventListener("click", toggleSettings);
 
   closeBtn.addEventListener("click", toggleSettings);
 
+  // Retrieve the settings from localStorage
+  const workTimeLS = localStorage.getItem("workTime");
+  const shortBreakTimeLS = localStorage.getItem("shortBreakTime");
+  const longBreakTimeLS = localStorage.getItem("longBreakTime");
+
+  // local storage handling
+  function updateLocalStorage() {
+    // Store the settings in localStorage
+    localStorage.setItem("workTime", workTime);
+    localStorage.setItem("shortBreakTime", shortBreakTime);
+    localStorage.setItem("longBreakTime", longBreakTime);
+
+    // Display the updated values in HTML
+    workDurationInput.value = workTime;
+    shortBreakDurationInput.value = shortBreakTime;
+    longBreakDurationInput.value = longBreakTime;
+  }
+
+  // Retrieve the settings from localStorage on page load
+  if (localStorage.getItem("workTime")) {
+    workTime = parseInt(localStorage.getItem("workTime"));
+    workDurationInput.value = workTime;
+  }
+
+  if (localStorage.getItem("shortBreakTime")) {
+    shortBreakTime = parseInt(localStorage.getItem("shortBreakTime"));
+    shortBreakDurationInput.value = shortBreakTime;
+  }
+
+  if (localStorage.getItem("longBreakTime")) {
+    longBreakTime = parseInt(localStorage.getItem("longBreakTime"));
+    longBreakDurationInput.value = longBreakTime;
+  }
+
+  // Update the settings in localStorage on submit
   settingsForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
     workTime = parseInt(workDurationInput.value);
     shortBreakTime = parseInt(shortBreakDurationInput.value);
     longBreakTime = parseInt(longBreakDurationInput.value);
+
+    updateLocalStorage();
   });
 });
