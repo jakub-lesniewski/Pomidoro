@@ -20,7 +20,7 @@
   </head>
 
   <body>
-    <main class="container">
+    <main class="container-center">
       <div class="pomodoro-container">
         <i class="pomodoro fa-solid fa-circle"></i>
         <i class="pomodoro fa-solid fa-circle"></i>
@@ -38,5 +38,32 @@
         <button class="btn reset hidden">Reset</button>
       </div>
     </main>
+
+    <div class="container-left hidden">
+      <button class="btn-settings close"><i class="fas fa-times"></i></button>
+
+      <label>Work duration (25 - 45 minutes)</label>
+      <input type="number" class="work-duration" min="25" max="45" value="25" />
+
+      <label>Short break duration (5 - 15 minutes)</label>
+      <input
+        type="number"
+        class="short-break-duration"
+        min="5"
+        max="15"
+        value="5"
+      />
+
+      <label>Long break duration (20 - 30 minutes)</label>
+      <input
+        type="number"
+        class="long-break-duration"
+        min="20"
+        max="30"
+        value="20"
+      />
+    </div>
+
+    <button class="btn-settings settings"><i class="fas fa-cog"></i></button>
   </body>
 </html>
