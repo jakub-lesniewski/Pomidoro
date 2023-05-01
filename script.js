@@ -123,17 +123,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Settings
-
-  const closeSettings = () => {
+  const toggleSettings = () => {
     settingsContainer.classList.toggle("hidden");
     settingsBtn.classList.toggle("hidden");
   };
-  settingsBtn.addEventListener("click", () => {
-    settingsContainer.classList.toggle("hidden");
-    settingsBtn.classList.toggle("hidden");
-  });
+  settingsBtn.addEventListener("click", toggleSettings);
 
-  closeBtn.addEventListener("click", closeSettings);
+  closeBtn.addEventListener("click", toggleSettings);
 
   settingsForm.addEventListener("submit", (event) => {
     event.preventDefault();
