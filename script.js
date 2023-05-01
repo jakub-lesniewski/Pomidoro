@@ -9,15 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const minutesLabel = document.querySelector(".minutes");
 
   const audio = new Audio("ding.mp3");
-  audio.play();
 
   let seconds = 0;
   let minutes = 0;
-  let interval;
-  let isPaused = false;
-
   let currentPomodoro = 0;
-  let isBreak = false;
+  let interval;
+
+  let isPaused = false;
+  let isShortBreak = false;
+  let isLongBreak = false;
 
   const displayButtons = () => {
     pauseBtn.classList.remove("hidden");
@@ -25,40 +25,67 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.classList.add("hidden");
   };
 
-  const breakTime = () => {
-    pomodoros[currentPomodoro].classList.add("pomodoro-active");
+  const shortBreak = () => {
     audio.play();
     currentPomodoro++;
-    isBreak = true;
+    isShortBreak = true;
 
     document.title = "Take a break! 🍅";
 
     seconds = 0;
     minutes = 0;
+  };
 
-    if (seconds === 5) {
-      isBreak = false;
-    }
+  const longBreak = () => {
+    audio.play();
+    isLongBreak = true;
+
+    pomodoros.forEach(function (element) {
+      element.classList.remove("pomodoro-active");
+    });
+
+    document.title = "Take a long break! 🍅";
+
+    seconds = 0;
+    minutes = 0;
+    currentPomodoro = 0;
   };
 
   const updateDisplay = () => {
     secondsLabel.textContent = seconds < 10 ? `0${seconds}` : seconds;
     minutesLabel.textContent = minutes < 10 ? `0${minutes}` : minutes;
 
-    if (seconds === 2 && isBreak === false) {
-      breakTime();
+    if (
+      seconds === 2 &&
+      isShortBreak === false &&
+      currentPomodoro <= pomodoros.length
+    ) {
+      pomodoros[currentPomodoro].classList.add("pomodoro-active");
+      shortBreak();
     }
 
-    if (isBreak && seconds === 1) {
-      isBreak = false;
+    if (isShortBreak && seconds === 1) {
+      isShortBreak = false;
       audio.play();
       document.title = "Pomodoro Timer 🍅";
       seconds = 0;
       minutes = 0;
     }
 
-    if (currentPomodoro === pomodoros.length + 1) {
-      pomodoroHalt();
+    if (
+      currentPomodoro === pomodoros.length &&
+      isLongBreak === false &&
+      seconds === 5
+    ) {
+      longBreak();
+    }
+
+    if (isLongBreak && seconds === 5) {
+      isLongBreak = false;
+      audio.play();
+      document.title = "Pomodoro Timer 🍅";
+      seconds = 0;
+      minutes = 0;
     }
   };
 
@@ -85,18 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
       isPaused = false;
       pauseBtn.textContent = "Pause";
     }
-  };
-
-  const pomodoroHalt = () => {
-    audio.play();
-    toggleWatch();
-
-    seconds = 0;
-    minutes = 0;
-
-    pomodoros.forEach((pomodoro) => {
-      pomodoro.classList.remove("pomodoro-active");
-    });
   };
 
   startBtn.addEventListener("click", startWatch);
