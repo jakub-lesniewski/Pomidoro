@@ -72,18 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Dark mode
   const toggleDarkMode = () => {
+    isDark = !isDark;
     darkBtn.classList.toggle("hidden");
     lightBtn.classList.toggle("hidden");
-
-    if (!isDark) {
-      isDark = true;
-      document.documentElement.style.setProperty("--bg-color", "#333333");
-      document.documentElement.style.setProperty("--gray-color", "#fafcff");
-    } else {
-      isDark = false;
-      document.documentElement.style.setProperty("--bg-color", "#fafcff");
-      document.documentElement.style.setProperty("--gray-color", "#333333");
-    }
+    document.documentElement.style.setProperty(
+      "--bg-color",
+      isDark ? "#333333" : "#fafcff"
+    );
+    document.documentElement.style.setProperty(
+      "--gray-color",
+      isDark ? "#fafcff" : "#333333"
+    );
   };
 
   darkBtn.addEventListener("click", toggleDarkMode);
