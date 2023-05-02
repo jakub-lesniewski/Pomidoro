@@ -6,7 +6,6 @@
 }
 
 body {
-  background: var(--bg-color);
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -14,6 +13,7 @@ body {
 }
 
 .container-center {
+  background: var(--bg-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
