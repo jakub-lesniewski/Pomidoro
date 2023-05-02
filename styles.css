@@ -125,3 +125,10 @@ body {
 .submit:active {
   transform: translateY(0.2rem);
 }
+
+/* dark mode */
+.dark-mode {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
