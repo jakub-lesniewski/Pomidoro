@@ -3,6 +3,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const settingsBtn = document.querySelector(".settings");
   const closeBtn = document.querySelector(".close");
+
+  const darkBtn = document.querySelector(".dark");
+  const lightBtn = document.querySelector(".light");
+
   const settingsContainer = document.querySelector(".container-left");
   const workDurationInput = document.querySelector(".work-duration");
   const shortBreakDurationInput = document.querySelector(
@@ -63,4 +67,13 @@ document.addEventListener("DOMContentLoaded", () => {
     longBreakTime = parseInt(localStorage.getItem("longBreakTime"));
     longBreakDurationInput.value = longBreakTime;
   }
+
+  // Dark mode
+  const toggleDarkMode = () => {
+    darkBtn.classList.toggle("hidden");
+    lightBtn.classList.toggle("hidden");
+  };
+
+  darkBtn.addEventListener("click", toggleDarkMode);
+  lightBtn.addEventListener("click", toggleDarkMode);
 });
