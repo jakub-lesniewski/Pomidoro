@@ -67,6 +67,7 @@ body {
 .btn:hover {
   color: var(--bg-color);
   background-color: var(--red-color);
+  cursor: pointer;
 }
 
 .hidden {
@@ -92,6 +93,7 @@ body {
   border: none;
   font-size: 1.5rem;
   color: var(--gray-color);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .btn-settings:hover {
