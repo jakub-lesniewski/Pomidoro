@@ -78,6 +78,7 @@ body {
 /* settings */
 .container-left {
   background: var(--bg-color);
+  color: var(--gray-color);
   position: absolute;
   top: 2rem;
   left: 2rem;
